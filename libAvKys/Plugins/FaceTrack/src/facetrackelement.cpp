@@ -34,47 +34,47 @@
 
 class FaceTrackElementPrivate
 {
-    public:
-        QString m_haarFile;
-        QSize m_scanSize;
-        int m_faceBucketSize;
-        QVector<QRect> m_faceBuckets;
-        int m_expandRate;
-        int m_contractRate;
-        QRect m_faceMargin;
-        QRect m_facePadding;
-        QSize m_aspectRatio;
-        bool m_overrideAspectRatio;
-        bool m_lockedViewport;
-        bool m_debugModeEnabled;
+public:
+    QString m_haarFile;
+    QSize m_scanSize;
+    int m_faceBucketSize;
+    QVector<QRect> m_faceBuckets;
+    int m_expandRate;
+    int m_contractRate;
+    QRect m_faceMargin;
+    QRect m_facePadding;
+    QSize m_aspectRatio;
+    bool m_overrideAspectRatio;
+    bool m_lockedViewport;
+    bool m_debugModeEnabled;
 
-        QRect m_lastBounds;
-        QSharedPointer<FaceDetectElement> m_faceDetectFilter;
+    QRect m_lastBounds;
+    QSharedPointer<FaceDetectElement> m_faceDetectFilter;
 
-        QList<QColor> m_colors = {
-            QColor(255, 179, 0), // Vivid Yellow
-            QColor(128, 62, 117), // Strong Purple
-            QColor(255, 104, 0), // Vivid Orange
-            QColor(166, 189, 215), // Very Light Blue
-            QColor(193, 0, 32), // Vivid Red
-            QColor(206, 162, 98), // Grayish Yellow
-            QColor(129, 112, 102), // Medium Gray
+    QList<QColor> m_colors = {
+        QColor(255, 179, 0), // Vivid Yellow
+        QColor(128, 62, 117), // Strong Purple
+        QColor(255, 104, 0), // Vivid Orange
+        QColor(166, 189, 215), // Very Light Blue
+        QColor(193, 0, 32), // Vivid Red
+        QColor(206, 162, 98), // Grayish Yellow
+        QColor(129, 112, 102), // Medium Gray
 
-            // The following will not be good for people with defective color vision
-            QColor(0, 125, 52), // Vivid Green
-            QColor(246, 118, 142), // Strong Purplish Pink
-            QColor(0, 83, 138), // Strong Blue
-            QColor(255, 122, 92), // Strong Yellowish Pink
-            QColor(83, 55, 122), // Strong Violet
-            QColor(255, 142, 0), // Vivid Orange Yellow
-            QColor(179, 40, 81), // Strong Purplish Red
-            QColor(244, 200, 0), // Vivid Greenish Yellow
-            QColor(127, 24, 13), // Strong Reddish Brown
-            QColor(147, 170, 0), // Vivid Yellowish Green
-            QColor(89, 51, 21), // Deep Yellowish Brown
-            QColor(241, 58, 19), // Vivid Reddish Orange
-            QColor(35, 44, 22), // Dark Olive Green
-        };
+        // The following will not be good for people with defective color vision
+        QColor(0, 125, 52), // Vivid Green
+        QColor(246, 118, 142), // Strong Purplish Pink
+        QColor(0, 83, 138), // Strong Blue
+        QColor(255, 122, 92), // Strong Yellowish Pink
+        QColor(83, 55, 122), // Strong Violet
+        QColor(255, 142, 0), // Vivid Orange Yellow
+        QColor(179, 40, 81), // Strong Purplish Red
+        QColor(244, 200, 0), // Vivid Greenish Yellow
+        QColor(127, 24, 13), // Strong Reddish Brown
+        QColor(147, 170, 0), // Vivid Yellowish Green
+        QColor(89, 51, 21), // Deep Yellowish Brown
+        QColor(241, 58, 19), // Vivid Reddish Orange
+        QColor(35, 44, 22), // Dark Olive Green
+    };
 };
 
 FaceTrackElement::FaceTrackElement(): AkElement()
@@ -178,9 +178,9 @@ QRect FaceTrackElement::calculateNewBounds(const QRect &targetBounds,
 
     // Apply the expand/contract rates to get the new bounds
     newBounds.setCoords(l.left() - ((t.left() < l.left() ? xRate : cRate) * abs(t.left() - l.left())),
-                     l.top() - ((t.top() < l.top() ? xRate : cRate) * abs(t.top() - l.top())),
-                     l.right() + ((t.right() > l.right() ? xRate : cRate) * abs(t.right() - l.right())),
-                     l.bottom() + ((t.bottom() > l.bottom() ? xRate : cRate) * abs(t.bottom() - l.bottom())));
+                        l.top() - ((t.top() < l.top() ? xRate : cRate) * abs(t.top() - l.top())),
+                        l.right() + ((t.right() > l.right() ? xRate : cRate) * abs(t.right() - l.right())),
+                        l.bottom() + ((t.bottom() > l.bottom() ? xRate : cRate) * abs(t.bottom() - l.bottom())));
 
     // Make sure the new bounds are the correct aspect ratio
     auto ar = this->aspectRatio();
@@ -274,7 +274,7 @@ QString FaceTrackElement::controlInterfaceProvide(const QString &controlId) cons
 }
 
 void FaceTrackElement::controlInterfaceConfigure(QQmlContext *context,
-                                                  const QString &controlId) const
+                                                 const QString &controlId) const
 {
     Q_UNUSED(controlId)
 
@@ -290,7 +290,7 @@ AkPacket FaceTrackElement::iVideoStream(const AkVideoPacket &packet)
     QSize scanSize(this->d->m_scanSize);
 
     if (this->d->m_haarFile.isEmpty()
-        || scanSize.isEmpty()) {
+            || scanSize.isEmpty()) {
         akSend(packet)
     }
 
@@ -468,9 +468,9 @@ void FaceTrackElement::setFacePadding(const QRect facePadding)
     auto p = this->facePadding();
     QRect newFacePadding;
     newFacePadding.setCoords(facePadding.left() == -1 ? p.left() : facePadding.left(),
-                          facePadding.top() == -1 ? p.top() : facePadding.top(),
-                          facePadding.right() == -1 ? p.right() : facePadding.right(),
-                          facePadding.bottom() == -1 ? p.bottom() : facePadding.bottom());
+                             facePadding.top() == -1 ? p.top() : facePadding.top(),
+                             facePadding.right() == -1 ? p.right() : facePadding.right(),
+                             facePadding.bottom() == -1 ? p.bottom() : facePadding.bottom());
     if (p == newFacePadding)
         return;
 
@@ -483,9 +483,9 @@ void FaceTrackElement::setFaceMargin(QRect faceMargin)
 
     auto p = this->faceMargin();
     faceMargin.setCoords(faceMargin.left() == -1 ? p.left() : faceMargin.left(),
-                          faceMargin.top() == -1 ? p.top() : faceMargin.top(),
-                          faceMargin.right() == -1 ? p.right() : faceMargin.right(),
-                          faceMargin.bottom() == -1 ? p.bottom() : faceMargin.bottom());
+                         faceMargin.top() == -1 ? p.top() : faceMargin.top(),
+                         faceMargin.right() == -1 ? p.right() : faceMargin.right(),
+                         faceMargin.bottom() == -1 ? p.bottom() : faceMargin.bottom());
     if (p == faceMargin)
         return;
 
