@@ -379,7 +379,7 @@ GridLayout {
         }
 
         CheckBox {
-            Layout.alignment: Qt.AlignCenter
+            Layout.alignment: Qt.AlignRight
 
             checked: FaceTrack.overrideAspectRatio
 
@@ -392,7 +392,7 @@ GridLayout {
         text: qsTr("Lock viewport")
     }
     CheckBox {
-        Layout.alignment: Qt.AlignHCenter
+        Layout.alignment: Qt.AlignRight
 
         checked: FaceTrack.lockedViewport
 
@@ -404,7 +404,7 @@ GridLayout {
         text: qsTr("Debug mode")
     }
     CheckBox {
-        Layout.alignment: Qt.AlignCenter
+        Layout.alignment: Qt.AlignRight
 
         checked: FaceTrack.debugModeEnabled
 

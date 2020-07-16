@@ -839,7 +839,7 @@
     <message>
         <location filename="../qml/VideoOptions.qml" line="38"/>
         <source>Sources</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sources</translation>
     </message>
     <message>
         <location filename="../qml/VideoOptions.qml" line="41"/>
@@ -1460,7 +1460,7 @@
     <message>
         <location filename="../../../libAvKys/Plugins/DesktopCapture/share/qml/main.qml" line="48"/>
         <source>Frame rate</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fréquence d&apos;images</translation>
     </message>
     <message>
         <location filename="../../../libAvKys/Plugins/Distort/share/qml/main.qml" line="29"/>
